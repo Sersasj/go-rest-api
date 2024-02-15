@@ -25,3 +25,10 @@ func GetPersonalidades(w http.ResponseWriter, r *http.Request) {
 	database.DB.Find(&personalidades)
 	json.NewEncoder(w).Encode(personalidades)
 }
+
+func CreatePersonalidade(w http.ResponseWriter, r *http.Request) {
+	var p models.Personalidade
+	json.NewDecoder(r.Body).Decode(&p)
+	database.DB.Create(&p)
+	json.NewEncoder(w).Encode(p)
+}
